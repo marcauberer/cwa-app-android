@@ -10,6 +10,7 @@ import de.rki.coronawarnapp.util.toOkioByteString
 import de.rki.coronawarnapp.util.toProtoByteString
 import okio.ByteString.Companion.decodeBase64
 import org.joda.time.Instant
+import timber.log.Timber
 
 fun TraceLocation.qrCodePayload(): QRCodePayload {
     val vendorData = CWALocationData.newBuilder()
@@ -41,6 +42,7 @@ fun TraceLocation.qrCodePayload(): QRCodePayload {
 
 fun QRCodePayload.traceLocation(): TraceLocation {
     val cwaLocationData = CWALocationData.parseFrom(vendorData)
+    Timber.d("cwaLocationData=$cwaLocationData")
     return TraceLocation(
         version = version,
         type = cwaLocationData.type,

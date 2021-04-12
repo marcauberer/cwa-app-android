@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.combine
 import org.joda.time.Duration
 import org.joda.time.Instant
 import org.joda.time.format.DateTimeFormat
+import timber.log.Timber
 
 class ConfirmCheckInViewModel @AssistedInject constructor(
     @Assisted private val verifiedTraceLocation: VerifiedTraceLocation,
@@ -66,7 +67,7 @@ class ConfirmCheckInViewModel @AssistedInject constructor(
                     checkInStart = now,
                     createJournalEntry = createJournalEntry.value,
                     checkInEnd = now + autoCheckOutLength.value
-                )
+                ).also { Timber.d("toCheckIn=$it") }
             )
             events.postValue(ConfirmCheckInNavigation.ConfirmNavigation)
         }

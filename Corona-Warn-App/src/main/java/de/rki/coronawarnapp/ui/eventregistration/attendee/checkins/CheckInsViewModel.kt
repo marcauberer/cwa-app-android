@@ -141,7 +141,11 @@ class CheckInsViewModel @AssistedInject constructor(
         try {
             Timber.i("uri: $uri")
             val qrCodePayload = qrCodeUriParser.getQrCodePayload(uri)
+            Timber.d("qrCodePayload=$qrCodePayload")
             val verifiedTraceLocation = VerifiedTraceLocation(qrCodePayload)
+            Timber.d("traceLocation=${verifiedTraceLocation.traceLocation}")
+            Timber.d("traceLocationId=${verifiedTraceLocation.traceLocation.locationId}")
+            Timber.d("traceLocationUrl=${verifiedTraceLocation.traceLocation.locationUrl}")
             events.postValue(CheckInEvent.ConfirmCheckIn(verifiedTraceLocation))
         } catch (e: Exception) {
             Timber.d(e, "TraceLocation verification failed")
