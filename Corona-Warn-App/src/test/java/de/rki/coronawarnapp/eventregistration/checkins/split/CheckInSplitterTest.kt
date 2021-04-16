@@ -356,25 +356,26 @@ class CheckInSplitterTest : BaseTest() {
         /*
         localCheckIn = { start: '2021-03-04 23:59', end: '2021-03-05 00:01' }
         splitInto = [
-            { start: '2021-03-04 00:00', end: '2021-03-05 00:00' } // No split
+            { start: '2021-03-04 23:59', end: '2021-03-05 00:00' },
+            { start: '2021-03-05 00:00', end: '2021-03-05 00:01' }
         ]
         */
 
         val checkIn = defaultCheckIn.copy(
-            checkInStart = Instant.parse("2021-03-04T00:23:59Z"),
-            checkInEnd = Instant.parse("2021-03-05T00:00:01Z")
+            checkInStart = Instant.parse("2021-03-04T23:59Z"),
+            checkInEnd = Instant.parse("2021-03-05T00:01Z")
         )
 
         checkIn.splitByMidnightUTC().apply {
             size shouldBe 2
             get(0) shouldBe checkIn.copy(
-                checkInStart = Instant.parse("2021-03-04T00:23:59Z"),
-                checkInEnd = Instant.parse("2021-03-05T00:00:00Z")
+                checkInStart = Instant.parse("2021-03-04T23:59Z"),
+                checkInEnd = Instant.parse("2021-03-05T00:00Z")
             )
 
             get(1) shouldBe checkIn.copy(
-                checkInStart = Instant.parse("2021-03-05T00:00:00.000Z"),
-                checkInEnd = Instant.parse("2021-03-05T00:00:01Z")
+                checkInStart = Instant.parse("2021-03-05T00:00Z"),
+                checkInEnd = Instant.parse("2021-03-05T00:01Z")
             )
         }
     }
