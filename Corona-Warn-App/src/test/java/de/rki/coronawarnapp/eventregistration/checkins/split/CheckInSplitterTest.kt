@@ -379,4 +379,62 @@ class CheckInSplitterTest : BaseTest() {
             )
         }
     }
+
+    @Test
+    fun `2dates check-in test case 1 - EXPOSUREAPP-6457`() {
+        /*
+        localCheckIn = { start: '2021-04-13 20:24', end: '2021-04-14 05:39' }
+        splitInto = [
+            { start: '2021-04-13 20:24', end: '2021-04-14 00:00' },
+            { start: '2021-04-14 00:00', end: '2021-04-14 05:39' }
+        ]
+        */
+
+        val checkIn = defaultCheckIn.copy(
+            checkInStart = Instant.parse("2021-04-13T20:24Z"),
+            checkInEnd = Instant.parse("2021-04-14T05:39Z")
+        )
+
+        checkIn.splitByMidnightUTC().apply {
+            size shouldBe 2
+            get(0) shouldBe checkIn.copy(
+                checkInStart = Instant.parse("2021-04-13T20:24Z"),
+                checkInEnd = Instant.parse("2021-04-14T00:00Z")
+            )
+
+            get(1) shouldBe checkIn.copy(
+                checkInStart = Instant.parse("2021-04-14T00:00Z"),
+                checkInEnd = Instant.parse("2021-04-14T05:39Z")
+            )
+        }
+    }
+
+    @Test
+    fun `2dates check-in test case 2 - EXPOSUREAPP-6457`() {
+        /*
+        localCheckIn = { start: '2021-04-13 20:24', end: '2021-04-14 05:24' }
+        splitInto = [
+            { start: '2021-04-13 20:24', end: '2021-04-14 00:00' },
+            { start: '2021-04-14 00:00', end: '2021-04-14 05:24' }
+        ]
+        */
+
+        val checkIn = defaultCheckIn.copy(
+            checkInStart = Instant.parse("2021-04-13T20:24Z"),
+            checkInEnd = Instant.parse("2021-04-14T05:24Z")
+        )
+
+        checkIn.splitByMidnightUTC().apply {
+            size shouldBe 2
+            get(0) shouldBe checkIn.copy(
+                checkInStart = Instant.parse("2021-04-13T20:24Z"),
+                checkInEnd = Instant.parse("2021-04-14T00:00Z")
+            )
+
+            get(1) shouldBe checkIn.copy(
+                checkInStart = Instant.parse("2021-04-14T00:00Z"),
+                checkInEnd = Instant.parse("2021-04-14T05:24Z")
+            )
+        }
+    }
 }
