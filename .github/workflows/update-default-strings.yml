@@ -16,4 +16,8 @@ jobs:
           ACTOR=${GITHUB_ACTOR}
           echo Branch Name $BRANCH
           echo Actor $ACTOR
-          echo "::set-output name=BRANCH_NAME::$BRANCH"
+          echo "::set-output name=BRANCH::$BRANCH"
+          echo "::set-output name=ACTOR::$ACTORE"
+      - name: Run if it's a translation delivery
+        if: ${{ steps.calculate-branch-name.outputs.BRANCH == service-tip-git:release/2.1.x && steps.calculate-branch-name.outputs.ACTOR == service-tip-git}}
+        run: echo its a translation branch
