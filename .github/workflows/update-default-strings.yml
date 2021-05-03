@@ -17,7 +17,7 @@ jobs:
           echo Branch Name $BRANCH
           echo Actor $ACTOR
           echo "::set-output name=BRANCH::$BRANCH"
-          echo "::set-output name=ACTOR::$ACTORE"
+          echo "::set-output name=ACTOR::$ACTOR"
       - name: Echo output from calculate-branch-name
         run: |
           echo ${{ steps.calculate-branch-name.outputs.BRANCH }}
