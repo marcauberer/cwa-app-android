@@ -13,5 +13,7 @@ jobs:
           env
           echo GITHUB_REF $GITHUB_REF
           BRANCH=${GITHUB_REF#refs/heads/*}
+          ACTOR=${GITHUB_ACTOR}
           echo Branch Name $BRANCH
+          echo Actor $ACTOR
           echo "::set-output name=BRANCH_NAME::$BRANCH"
