@@ -1,8 +1,7 @@
 name: Update default strings on Translation Delivery
 
-
-on:
-  push:
+# for testing, needs to be refined when the logic works
+on: push
 
 jobs:
   update_default_strings:
