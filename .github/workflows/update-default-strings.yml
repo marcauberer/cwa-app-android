@@ -7,6 +7,11 @@ jobs:
   update_default_strings:
     runs-on: ubuntu-latest
     steps:
-      - name: Branch name
-        run: echo running on branch ${GITHUB_REF##*/}
-        id: extract_branch
+      - name: Determine branch name
+        id: calculate-branch-name
+        run: |
+          env
+          echo GITHUB_REF $GITHUB_REF
+          BRANCH=${GITHUB_REF#refs/heads/*}
+          echo Branch Name $BRANCH
+          echo "::set-output name=BRANCH_NAME::$BRANCH"
