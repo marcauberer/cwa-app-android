@@ -18,11 +18,12 @@ jobs:
           echo Actor $ACTOR
           echo "::set-output name=BRANCH::$BRANCH"
           echo "::set-output name=ACTOR::$ACTOR"
-      - name: Echo output from calculate-branch-name
+      - name: FOR TESTING - Echo output from calculate-branch-name
         run: |
           echo ${{ steps.calculate-branch-name.outputs.BRANCH }}
           echo ${{ steps.calculate-branch-name.outputs.ACTOR }}
       - name: Run if it's a translation delivery
         # if: ${{ steps.calculate-branch-name.outputs.BRANCH == 'service-tip-git:release/2.1.x' && steps.calculate-branch-name.outputs.ACTOR == 'service-tip-git'}}
+        # TODO replace by condition above
         if: ${{ steps.calculate-branch-name.outputs.BRANCH == 'feature/github-action-update-defaults' && steps.calculate-branch-name.outputs.ACTOR == 'harambasicluka'}}
         run: echo its a translation branch
