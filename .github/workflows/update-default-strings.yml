@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: Determine branch name
         id: calculate-branch-name
+        # escape branch name
         run: |
           env
           echo GITHUB_REF $GITHUB_REF
@@ -22,7 +23,16 @@ jobs:
         run: |
           echo ${{ steps.calculate-branch-name.outputs.BRANCH }}
           echo ${{ steps.calculate-branch-name.outputs.ACTOR }}
+      - name: Get all changed files
+        id: files
+        uses: jitterbit/get-changed-files@v1
+      - name: FOR TESTING - Echo output from files
+        run: |
+          for changed_file in ${{ steps.files.outputs.all }}; do
+            echo "Do something with this ${changed_file}."
+          done
       - name: Run if it's a translation delivery
+        # todo replace branch which has to be dynamic with a condition to check if files in values-en have changed
         # if: ${{ steps.calculate-branch-name.outputs.BRANCH == 'service-tip-git:release/2.1.x' && steps.calculate-branch-name.outputs.ACTOR == 'service-tip-git'}}
         # TODO replace by condition above
         if: ${{ steps.calculate-branch-name.outputs.BRANCH == 'feature/github-action-update-defaults' && steps.calculate-branch-name.outputs.ACTOR == 'harambasicluka'}}
