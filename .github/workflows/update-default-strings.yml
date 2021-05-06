@@ -28,9 +28,9 @@ jobs:
         uses: jitterbit/get-changed-files@v1
       - name: FOR TESTING - Echo output from files
         run: |
-        for changed_file in ${{ steps.files.outputs.all }}; do
-          echo "Do something with this ${changed_file}."
-        done
+          for changed_file in ${{ steps.files.outputs.all }}; do
+            echo "Do something with this ${changed_file}."
+          done
       - name: Run if it's a translation delivery
         # todo replace branch which has to be dynamic with a condition to check if files in values-en have changed
         # if: ${{ steps.calculate-branch-name.outputs.BRANCH == 'service-tip-git:release/2.1.x' && steps.calculate-branch-name.outputs.ACTOR == 'service-tip-git'}}
