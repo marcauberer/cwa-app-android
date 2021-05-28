@@ -8,6 +8,7 @@ import androidx.annotation.StyleRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import androidx.test.espresso.ViewAction
+import de.rki.coronawarnapp.BuildConfig
 import androidx.test.platform.app.InstrumentationRegistry
 import de.rki.coronawarnapp.R
 import java.io.BufferedOutputStream
@@ -47,22 +48,18 @@ inline fun <reified F : Fragment> captureScreenshot(
  * Saves screenshots on the device's sdcard
  */
 object SDCard {
-    private const val ROOT_DIRECTORY = "/sdcard"
+    private const val ROOT_DIRECTORY = "/data/data/${BuildConfig.APPLICATION_ID}"
     private const val SCREENSHOTS_DIRECTORY = "screenshots"
     private const val SCREENSHOT_FORMAT = ".png"
     private const val IMAGE_QUALITY = 100
 
     fun screenshotCaptured(screenshotName: String, screenshot: Bitmap) {
         try {
-            val directory = File(ROOT_DIRECTORY, SCREENSHOTS_DIRECTORY)
-            if (!directory.exists()) {
-                directory.mkdirs()
+            val directory = File(ROOT_DIRECTORY, SCREENSHOTS_DIRECTORY).apply { if (!exists()) mkdirs() }
+            val screenshotFile = File(directory, screenshotName + SCREENSHOT_FORMAT).apply {
+                if (!exists()) createNewFile()
             }
-            val screenshotFile = File(directory, screenshotName + SCREENSHOT_FORMAT)
-            if (!screenshotFile.exists()) {
-                screenshotFile.createNewFile()
-            }
-
+            Log.d("SDCard", screenshotFile.path)
             BufferedOutputStream(FileOutputStream(screenshotFile)).use {
                 screenshot.compress(Bitmap.CompressFormat.PNG, IMAGE_QUALITY, it)
                 screenshot.recycle()
