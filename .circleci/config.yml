@@ -433,7 +433,7 @@ jobs:
               --os-version-ids 29 \
               --locales de_DE,en_US \
               --orientations portrait \
-              --directories-to-pull /data/data/de.de.rki.coronawarnapp.test/screenshots \
+              --directories-to-pull /data/data/de.rki.coronawarnapp.test/screenshots \
               --no-record-video
           no_output_timeout: 30m
       - run:
