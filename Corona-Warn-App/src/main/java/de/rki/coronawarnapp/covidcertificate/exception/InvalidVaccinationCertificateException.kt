@@ -1,7 +1,6 @@
 package de.rki.coronawarnapp.covidcertificate.exception
 
 import android.content.Context
-import de.rki.coronawarnapp.R
 import de.rki.coronawarnapp.util.HumanReadableError
 import de.rki.coronawarnapp.util.ui.CachedString
 import de.rki.coronawarnapp.util.ui.LazyString
@@ -53,9 +52,3 @@ class InvalidVaccinationCertificateException(errorCode: ErrorCode) : InvalidHeal
 }
 
 private const val PREFIX_VC = "VC_"
-
-private const val ERROR_MESSAGE_VC_INVALID = R.string.error_vc_invalid
-private const val ERROR_MESSAGE_VC_NOT_YET_SUPPORTED = R.string.error_vc_not_yet_supported
-private const val ERROR_MESSAGE_VC_SCAN_AGAIN = R.string.error_vc_scan_again
-private const val ERROR_MESSAGE_VC_DIFFERENT_PERSON = R.string.error_vc_different_person
-private const val ERROR_MESSAGE_VC_ALREADY_REGISTERED = R.string.error_vc_already_registered
