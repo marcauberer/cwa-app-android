@@ -1,4 +1,4 @@
-package de.rki.coronawarnapp.covidcertificate.vaccination.core.certificate
+package de.rki.coronawarnapp.covidcertificate.cose
 
 import com.upokecenter.cbor.CBORObject
 import de.rki.coronawarnapp.covidcertificate.cryptography.AesCryptography

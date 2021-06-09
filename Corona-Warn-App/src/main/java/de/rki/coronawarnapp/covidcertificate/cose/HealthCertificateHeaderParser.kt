@@ -1,4 +1,4 @@
-package de.rki.coronawarnapp.covidcertificate.vaccination.core.certificate
+package de.rki.coronawarnapp.covidcertificate.cose
 
 import com.upokecenter.cbor.CBORObject
 import dagger.Reusable
@@ -12,7 +12,7 @@ import javax.inject.Inject
 @Reusable
 class HealthCertificateHeaderParser @Inject constructor() {
 
-    fun parse(map: CBORObject): CoseCertificateHeader = try {
+    fun parse(map: CBORObject): HealthCertificateHeader = try {
         val issuer: String = map[keyIssuer]?.AsString() ?: throw InvalidHealthCertificateException(HC_CWT_NO_ISS)
 
         val issuedAt: Instant = map[keyIssuedAt]?.run {

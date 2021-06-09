@@ -1,8 +1,8 @@
 package de.rki.coronawarnapp.covidcertificate.vaccination.core
 
-import de.rki.coronawarnapp.covidcertificate.vaccination.core.certificate.HealthCertificateHeader
+import de.rki.coronawarnapp.covidcertificate.cose.HealthCertificateHeader
+import de.rki.coronawarnapp.covidcertificate.vaccination.core.certificate.VaccinationCertificateData
 import de.rki.coronawarnapp.covidcertificate.vaccination.core.certificate.VaccinationDGCV1
-import de.rki.coronawarnapp.covidcertificate.vaccination.core.qrcode.VaccinationCertificateData
 import de.rki.coronawarnapp.covidcertificate.vaccination.core.qrcode.VaccinationCertificateQRCode
 import de.rki.coronawarnapp.covidcertificate.vaccination.core.qrcode.VaccinationQRCodeExtractor
 import de.rki.coronawarnapp.covidcertificate.vaccination.core.repository.storage.VaccinatedPersonData

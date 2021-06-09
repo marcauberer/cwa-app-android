@@ -2,6 +2,9 @@ package de.rki.coronawarnapp.covidcertificate.test.core.qrcode
 
 import com.upokecenter.cbor.CBORObject
 import dagger.Reusable
+import de.rki.coronawarnapp.covidcertificate.cose.HealthCertificateCOSEDecoder
+import de.rki.coronawarnapp.covidcertificate.cose.HealthCertificateHeaderParser
+import de.rki.coronawarnapp.covidcertificate.cose.RawCOSEObject
 import de.rki.coronawarnapp.covidcertificate.exception.InvalidHealthCertificateException
 import de.rki.coronawarnapp.covidcertificate.exception.InvalidHealthCertificateException.ErrorCode.HC_BASE45_DECODING_FAILED
 import de.rki.coronawarnapp.covidcertificate.exception.InvalidHealthCertificateException.ErrorCode.HC_BASE45_ENCODING_FAILED
@@ -12,9 +15,6 @@ import de.rki.coronawarnapp.covidcertificate.exception.InvalidHealthCertificateE
 import de.rki.coronawarnapp.covidcertificate.exception.InvalidTestCertificateException
 import de.rki.coronawarnapp.covidcertificate.test.core.certificate.TestCertificateData
 import de.rki.coronawarnapp.covidcertificate.test.core.certificate.TestCertificateDccParser
-import de.rki.coronawarnapp.covidcertificate.vaccination.core.certificate.HealthCertificateCOSEDecoder
-import de.rki.coronawarnapp.covidcertificate.vaccination.core.certificate.HealthCertificateHeaderParser
-import de.rki.coronawarnapp.covidcertificate.vaccination.core.certificate.RawCOSEObject
 import de.rki.coronawarnapp.util.compression.deflate
 import de.rki.coronawarnapp.util.compression.inflate
 import de.rki.coronawarnapp.util.encoding.Base45Decoder

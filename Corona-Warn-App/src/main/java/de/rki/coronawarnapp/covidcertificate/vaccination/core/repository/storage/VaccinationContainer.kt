@@ -4,11 +4,11 @@ import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 import de.rki.coronawarnapp.covidcertificate.common.CertificatePersonIdentifier
 import de.rki.coronawarnapp.covidcertificate.common.personIdentifier
+import de.rki.coronawarnapp.covidcertificate.cose.HealthCertificateHeader
 import de.rki.coronawarnapp.covidcertificate.vaccination.core.VaccinationCertificate
-import de.rki.coronawarnapp.covidcertificate.vaccination.core.certificate.CoseCertificateHeader
+import de.rki.coronawarnapp.covidcertificate.vaccination.core.certificate.VaccinationCertificateData
 import de.rki.coronawarnapp.covidcertificate.vaccination.core.certificate.VaccinationDGCV1
 import de.rki.coronawarnapp.covidcertificate.vaccination.core.qrcode.QrCodeString
-import de.rki.coronawarnapp.covidcertificate.vaccination.core.qrcode.VaccinationCertificateData
 import de.rki.coronawarnapp.covidcertificate.vaccination.core.qrcode.VaccinationCertificateQRCode
 import de.rki.coronawarnapp.covidcertificate.vaccination.core.qrcode.VaccinationQRCodeExtractor
 import de.rki.coronawarnapp.covidcertificate.valueset.valuesets.VaccinationValueSets
@@ -35,7 +35,7 @@ data class VaccinationContainer internal constructor(
         preParsedData ?: qrCodeExtractor.extract(vaccinationQrCode).parsedData
     }
 
-    val header: CoseCertificateHeader
+    val header: HealthCertificateHeader
         get() = certificateData.header
 
     val certificate: VaccinationDGCV1

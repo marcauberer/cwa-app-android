@@ -1,14 +1,14 @@
 package de.rki.coronawarnapp.covidcertificate.test.core.qrcode
 
 import com.google.gson.Gson
+import de.rki.coronawarnapp.covidcertificate.cose.HealthCertificateCOSEDecoder
+import de.rki.coronawarnapp.covidcertificate.cose.HealthCertificateHeaderParser
 import de.rki.coronawarnapp.covidcertificate.cryptography.AesCryptography
 import de.rki.coronawarnapp.covidcertificate.exception.InvalidHealthCertificateException
 import de.rki.coronawarnapp.covidcertificate.exception.InvalidTestCertificateException
 import de.rki.coronawarnapp.covidcertificate.test.TestData
 import de.rki.coronawarnapp.covidcertificate.test.core.certificate.TestCertificateDccParser
 import de.rki.coronawarnapp.covidcertificate.vaccination.core.VaccinationQrCodeTestData
-import de.rki.coronawarnapp.covidcertificate.vaccination.core.certificate.HealthCertificateCOSEDecoder
-import de.rki.coronawarnapp.covidcertificate.vaccination.core.certificate.HealthCertificateHeaderParser
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import okio.ByteString.Companion.decodeBase64
