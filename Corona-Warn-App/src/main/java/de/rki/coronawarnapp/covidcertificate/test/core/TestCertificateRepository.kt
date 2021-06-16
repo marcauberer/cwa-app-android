@@ -196,12 +196,7 @@ class TestCertificateRepository @Inject constructor(
                 refreshCallResults[it.certificateContainer.identifier] = it
             }
 
-            mutate {
-                refreshedCerts
-                    .filter { it.error == null }
-                    .map { it.certificateContainer }
-                    .forEach { this[it.identifier] = it }
-            }
+            this
         }
 
         internalData.updateBlocking {
