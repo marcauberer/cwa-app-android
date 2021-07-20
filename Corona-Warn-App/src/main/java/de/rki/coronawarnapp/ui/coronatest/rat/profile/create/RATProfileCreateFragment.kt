@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import de.rki.coronawarnapp.R
 import de.rki.coronawarnapp.contactdiary.util.hideKeyboard
@@ -75,8 +77,13 @@ class RATProfileCreateFragment : Fragment(R.layout.rat_profile_create_fragment),
         }
 
     private fun openDatePicker() {
+        // Only allow date selections in the past
+        val constraintsBuilder = CalendarConstraints.Builder()
+            .setValidator(DateValidatorPointBackward.now())
+
         MaterialDatePicker.Builder
             .datePicker()
+            .setCalendarConstraints(constraintsBuilder.build())
             .build()
             .apply {
                 addOnPositiveButtonClickListener { timestamp ->
